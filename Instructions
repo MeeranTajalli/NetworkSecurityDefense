@@ -1,0 +1,19 @@
+to map tcpdump data into tcpdump_output.txt file:
+cd Desktop/project
+sudo tshark -i lo -Y "(udp || tcp.flags.syn == 1 || icmp)" -T fields -e frame.time_epoch -e ip.src -e frame.len -e _ws.col.Protocol -e _ws.col.Info -E header=y -E separator=, -E quote=d -E occurrence=f > ~/Desktop/project/tcpdump_output.txt
+
+
+
+UDP Flood:
+sudo hping3 --udp --flood --rand-source --destport 24 -c 500 127.0.0.1
+
+SYN Flood:
+sudo hping3 --syn --flood --destport 80 -c 500 127.0.0.1
+
+ICMP Flood:
+sudo hping3 --icmp --flood -c 500 127.0.0.1
+
+
+
+
+
